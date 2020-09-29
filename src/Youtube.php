@@ -108,9 +108,9 @@ class Youtube
      * @return array
      * @throws \Exception
      */
-    public function getCommentThreadsByVideoId($videoId = null, $maxResults = 20, $order = null, $part = ['id', 'replies', 'snippet'], $pageInfo = false) {
+    public function getCommentThreadsByVideoId($videoId = null, $maxResults = 20, $order = null, $part = ['id', 'replies', 'snippet'], $pageInfo = false,$nextPageToken=null) {
 
-        return $this->getCommentThreads(null, null, $videoId, $maxResults, $order, $part, $pageInfo);
+        return $this->getCommentThreads(null, null, $videoId, $maxResults, $order, $part, $pageInfo,$nextPageToken);
     }
 
     /**
@@ -124,7 +124,7 @@ class Youtube
      * @return array
      * @throws \Exception
      */
-    public function getCommentThreads($channelId = null, $id = null, $videoId = null, $maxResults = 20, $order = null, $part = ['id', 'replies', 'snippet'], $pageInfo = false)
+    public function getCommentThreads($channelId = null, $id = null, $videoId = null, $maxResults = 20, $order = null, $part = ['id', 'replies', 'snippet'], $pageInfo = false, $nextPageToken = null )
     {
         $API_URL = $this->getApi('commentThreads.list');
 
@@ -134,6 +134,7 @@ class Youtube
             'videoId' => $videoId,
             'maxResults' => $maxResults,
             'part' => implode(',', $part),
+            'nextPageToken'=>$nextPageToken,
             'order' => $order,
         ]);
 
