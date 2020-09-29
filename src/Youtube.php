@@ -134,7 +134,7 @@ class Youtube
             'videoId' => $videoId,
             'maxResults' => $maxResults,
             'part' => implode(',', $part),
-            'nextPageToken'=>$nextPageToken,
+            'pageToken'=>$nextPageToken,
             'order' => $order,
         ]);
 
